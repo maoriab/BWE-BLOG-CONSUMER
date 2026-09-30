@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
-Route::get('/', function () {
+Route::get('/', [PostController::class, 'index']);
 
-    $response = Http::get('http://127.0.0.1:8000/api/posts');
+Route::get('/posts/{slug}', [PostController::class, 'show']);
 
-    return $response->json();
-});
+Route::get('/en/posts/{slug}', [PostController::class, 'showEnglish']);
